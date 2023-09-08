@@ -3,9 +3,9 @@ from urllib import parse
 from app.kernel.provider import Provider
 from app.models import TitleModel
 
-class ComandoTo(Provider):
+class PirateTorrents(Provider):
   def __init__(self):
-    super().__init__("https://comando.la")
+    super().__init__("https://piratetorrents.org")
 
   def search(self, term: str) -> list[str]:
     data = self._fetch(f"?s={parse.quote(term)}")
