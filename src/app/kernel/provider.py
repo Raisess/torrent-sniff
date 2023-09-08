@@ -1,3 +1,4 @@
+from base64 import b64decode
 from bs4 import BeautifulSoup
 from urllib import request
 
@@ -5,7 +6,7 @@ from app.models import TitleModel
 
 class Provider:
   def __init__(self, host: str):
-    self.__host = host
+    self.__host = b64decode(bytes(host, "utf-8")).decode("utf-8")
 
   def host(self) -> str:
     return self.__host

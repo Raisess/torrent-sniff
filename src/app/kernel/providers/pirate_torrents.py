@@ -5,7 +5,7 @@ from app.models import TitleModel
 
 class PirateTorrents(Provider):
   def __init__(self):
-    super().__init__("https://piratetorrents.org")
+    super().__init__("aHR0cHM6Ly9waXJhdGV0b3JyZW50cy5vcmc=")
 
   def search(self, term: str) -> list[str]:
     data = self._fetch(f"?s={parse.quote(term)}")

@@ -5,7 +5,7 @@ from app.models import TitleModel
 
 class ComandoTo(Provider):
   def __init__(self):
-    super().__init__("https://comando.la")
+    super().__init__("aHR0cHM6Ly9jb21hbmRvLmxh")
 
   def search(self, term: str) -> list[str]:
     data = self._fetch(f"?s={parse.quote(term)}")
