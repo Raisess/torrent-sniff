@@ -4,18 +4,21 @@ from app.kernel.providers.comando_to import ComandoTo
 from app.models import TitleModel
 from app.views import SearchView
 
+PAGE_SIZE = 1
+
 class SearchController(Controller):
   def __init__(self):
     self.__providers = [ComandoTo()]
 
-  def search(self, term: str) -> str:
+  def search(self, term: str | None) -> str:
     magnet_links = []
-    for provider in self.__providers:
-      results = provider.search(term)[:3]
-      for result in results:
-        magnet_links.append({
-          "host": provider.host(),
-          "items": provider.get(result)
-        })
+    if term:
+      for provider in self.__providers:
+        results = provider.search(term)[:PAGE_SIZE]
+        for result in results:
+          magnet_links.append({
+            "host": provider.host(),
+            "items": provider.get(result)
+          })
 
     return self.render(SearchView(), { "data": magnet_links })

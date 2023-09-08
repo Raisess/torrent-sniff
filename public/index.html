@@ -18,34 +18,36 @@
         </div>
         <button type="submit" class="mt-2 btn btn-primary">Submit</button>
       </form>
-      <table class="mt-3 table table-bordered table-hover" style="max-width: 95vw;">
-        <thead>
-          <tr>
-            <th scope="col">Provider</th>
-            <th scope="col">Name</th>
-            <th scope="col">URL</th>
-            <th scope="col">Copy</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for result in data %}
-          {% for item in result.get("items") %}
+      {% if data %}
+        <table class="mt-3 table table-bordered table-hover" style="max-width: 95vw;">
+          <thead>
             <tr>
-              <td style="max-width: 5vw !important; overflow-x: auto;">{{ result.get("host") }}</td>
-              <td style="max-width: 10vw !important; overflow-x: auto;">{{ item.name }}</td>
-              <td style="max-width: 20vw !important; overflow-x: auto;">
-                <code id="{{ item.id }}" class="bg-secondary text-light rounded-1 p-2">
-                  {{ item.magnet_link }}
-                </code>
-              </td>
-              <td class="text-center fs-3" style="cursor: pointer;" onclick="copyToClipboard('{{item.id}}')">
-                <i class="bi bi-clipboard" />
-              </td>
+              <th scope="col">Provider</th>
+              <th scope="col">Name</th>
+              <th scope="col">URL</th>
+              <th scope="col">Copy</th>
             </tr>
+          </thead>
+          <tbody>
+          {% for result in data %}
+            {% for item in result.get("items") %}
+              <tr>
+                <td style="max-width: 5vw !important; overflow-x: auto;">{{ result.get("host") }}</td>
+                <td style="max-width: 10vw !important; overflow-x: auto;">{{ item.name }}</td>
+                <td style="max-width: 20vw !important; overflow-x: auto;">
+                  <code id="{{ item.id }}" class="bg-secondary text-light rounded-1 p-2">
+                    {{ item.magnet_link }}
+                  </code>
+                </td>
+                <td class="text-center fs-3" style="cursor: pointer;" onclick="copyToClipboard('{{item.id}}')">
+                  <i class="bi bi-clipboard" />
+                </td>
+              </tr>
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      {% endif %}
     </div>
   </body>
   <script>
