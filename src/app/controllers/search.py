@@ -10,7 +10,7 @@ from app.views import SearchView
 
 PAGE_SIZE = 1
 
-def handle_search(provider: Provider, term: str, magnet_links: list[dict]) -> None:
+def _handle_search(provider: Provider, term: str, magnet_links: list[dict]) -> None:
   results = provider.search(term)[:PAGE_SIZE]
   for result in results:
     magnet_links.append({
@@ -28,7 +28,7 @@ class SearchController(Controller):
     if term:
       tgroup = []
       for provider in self.__providers:
-        thread = Thread(target=handle_search, args=[provider, term, magnet_links])
+        thread = Thread(target=_handle_search, args=[provider, term, magnet_links])
         thread.start()
         tgroup.append(thread)
 
