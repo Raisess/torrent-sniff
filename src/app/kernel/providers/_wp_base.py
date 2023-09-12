@@ -25,10 +25,10 @@ class _WPBase(Provider):
     data = self._fetch(id)
     name = data.find("h1", attrs={ "class": "entry-title" }).get_text()
     anchors = data.find_all("a")
-    result = []
+    magnet_links = []
     for anchor in anchors:
       link = anchor.get("href")
       if link and link.startswith("magnet:?"):
-        result.append(link)
+        magnet_links.append(link)
 
-    return TitleModel(name, result)
+    return TitleModel(name, self.host(), magnet_links)

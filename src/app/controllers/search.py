@@ -10,13 +10,15 @@ from app.views import SearchView
 
 PAGE_SIZE = 1
 
-def _handle_search(provider: Provider, term: str, result: list[dict]) -> None:
+def _handle_search(
+  provider: Provider,
+  term: str,
+  result: list[TitleModel]
+) -> None:
   data = provider.search(term)[:PAGE_SIZE]
   for item in data:
-    result.append({
-      "host": provider.host(),
-      "torrent": provider.get(item)
-    })
+    torrent = provider.get(item)
+    result.append(torrent)
 
 
 class SearchController(Controller):
