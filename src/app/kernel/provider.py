@@ -14,7 +14,7 @@ class Provider:
   def search(self, term: str) -> list[str]:
     raise NotImplemented()
 
-  def get(self, id: str) -> list[TitleModel]:
+  def get(self, id: str) -> TitleModel:
     raise NotImplemented()
 
   def _fetch(self, path: str) -> BeautifulSoup:

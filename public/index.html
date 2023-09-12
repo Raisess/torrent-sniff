@@ -32,17 +32,17 @@
               </tr>
             </thead>
             <tbody>
-            {% for result in data %}
-              {% for item in result.get("items") %}
+            {% for item in data %}
+              {% for magnet_link in item.torrent.magnet_links %}
                 <tr>
-                  <td style="max-width: 5vw !important; overflow-x: auto;">{{ result.get("host") }}</td>
-                  <td style="max-width: 10vw !important; overflow-x: auto;">{{ item.name }}</td>
+                  <td style="max-width: 5vw !important; overflow-x: auto;">{{ item.host }}</td>
+                  <td style="max-width: 10vw !important; overflow-x: auto;">{{ item.torrent.name }}</td>
                   <td style="max-width: 20vw !important; overflow-x: auto;">
-                    <code id="{{ item.id }}" class="bg-secondary text-light rounded-1 p-2">
-                      {{ item.magnet_link }}
+                    <code id="{{ item.torrent.id }}" class="bg-secondary text-light rounded-1 p-2">
+                      {{ magnet_link }}
                     </code>
                   </td>
-                  <td class="text-center fs-3" style="cursor: pointer;" onclick="copyToClipboard('{{item.id}}')">
+                  <td class="text-center fs-3" style="cursor: pointer;" onclick="copyToClipboard('{{ item.torrent.id }}')">
                     <i class="bi bi-clipboard" />
                   </td>
                 </tr>

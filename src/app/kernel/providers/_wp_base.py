@@ -21,7 +21,7 @@ class _WPBase(Provider):
     ids = [item.split("/")[-2:][0] for item in urls]
     return ids
 
-  def get(self, id: str) -> list[TitleModel]:
+  def get(self, id: str) -> TitleModel:
     data = self._fetch(id)
     name = data.find("h1", attrs={ "class": "entry-title" }).get_text()
     anchors = data.find_all("a")
@@ -31,4 +31,4 @@ class _WPBase(Provider):
       if link and link.startswith("magnet:?"):
         result.append(link)
 
-    return [TitleModel(name, item) for item in result]
+    return TitleModel(name, result)
