@@ -14,7 +14,7 @@ python3 ./src/main.py
 Using podman/docker:
 
 ```shell
-./setup.sh
+./container.sh
 ```
 
 ### Creating a new provider
