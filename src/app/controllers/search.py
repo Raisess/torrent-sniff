@@ -1,6 +1,7 @@
 from threading import Thread
 
 from core.controller import Controller
+from core.env import Env
 from app.kernel.provider import Provider
 from app.kernel.providers.bf_torrent import BFTorrent
 from app.kernel.providers.comando_to import ComandoTo
@@ -8,13 +9,9 @@ from app.kernel.providers.pirate_torrents import PirateTorrents
 from app.models import TitleModel
 from app.views import SearchView
 
-PAGE_SIZE = 1
+PAGE_SIZE = int(Env.Get("PAGE_SIZE") or 1)
 
-def _handle_search(
-  provider: Provider,
-  term: str,
-  result: list[TitleModel]
-) -> None:
+def _handle_search(provider: Provider, term: str, result: list[TitleModel]) -> None:
   data = provider.search(term)[:PAGE_SIZE]
   for item in data:
     torrent = provider.get(item)

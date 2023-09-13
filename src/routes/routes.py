@@ -6,6 +6,5 @@ routes = Blueprint("routes", __name__)
 search_controller = SearchController()
 
 @routes.get("/")
-def get():
-  term = request.args.get("search")
-  return search_controller.search(term)
+def search():
+  return search_controller.search(request.args.get("search"))

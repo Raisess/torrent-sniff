@@ -24,7 +24,7 @@ class Provider:
       "accept-language": "en-US,en;q=0.8",
       "cache-control": "max-age=0",
       "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36",
-      "upgrade-insecure-requests": "1"
+      "upgrade-insecure-requests": "1",
     })
     with request.urlopen(req) as response:
       data = response.read()
