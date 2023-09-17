@@ -8,7 +8,7 @@
 from urllib import parse
 
 from app.kernel.provider import Provider
-from app.models import TitleModel
+from app.models import MagnetLink, TitleModel
 
 class _WPBase(Provider):
   def __init__(self, host: str):
@@ -29,6 +29,10 @@ class _WPBase(Provider):
     for anchor in anchors:
       link = anchor.get("href")
       if link and link.startswith("magnet:?"):
-        magnet_links.append(link)
+        magnet_links.append(MagnetLink(link=link))
 
-    return TitleModel(name, self.host(), magnet_links)
+    return TitleModel(
+      name=name,
+      provider=self.host(),
+      magnet_links=magnet_links
+    )

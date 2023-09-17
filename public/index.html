@@ -38,11 +38,11 @@
                   <td style="max-width: 5vw !important; overflow-x: auto;">{{ item.provider }}</td>
                   <td style="max-width: 10vw !important; overflow-x: auto;">{{ item.name }}</td>
                   <td style="max-width: 20vw !important; overflow-x: auto;">
-                    <code id="{{ item.id }}" class="bg-secondary text-light rounded-1 p-2">
-                      {{ magnet_link }}
+                    <code id="{{ magnet_link.id }}" class="bg-secondary text-light rounded-1 p-2">
+                      {{ magnet_link.link }}
                     </code>
                   </td>
-                  <td class="text-center fs-3" style="cursor: pointer;" onclick="copyToClipboard('{{ item.id }}')">
+                  <td class="text-center fs-3" style="cursor: pointer;" onclick="copyToClipboard('{{ magnet_link.id }}')">
                     <i class="bi bi-clipboard" />
                   </td>
                 </tr>
