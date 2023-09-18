@@ -2,7 +2,7 @@ from base64 import b64decode
 from bs4 import BeautifulSoup
 from urllib import request
 
-from app.models import TitleModel
+from app.models import MagnetLink, TitleModel
 
 class Provider:
   def __init__(self, host: str):
@@ -16,6 +16,13 @@ class Provider:
 
   def get(self, id: str) -> TitleModel:
     raise NotImplemented()
+
+  def _prepare(self, name: str, links: set[str]) -> TitleModel:
+    return TitleModel(
+      name=name,
+      provider=self.__host,
+      magnet_links=[MagnetLink(link) for link in links]
+    )
 
   def _fetch(self, path: str) -> BeautifulSoup:
     req = request.Request(f"{self.__host}/{path}", method="GET", headers={
