@@ -13,7 +13,11 @@ from app.views import SearchView
 
 FETCH_SIZE = int(Env.Get("FETCH_SIZE") or 1)
 
-def _handle_search(provider: Provider, term: str, result: list[TitleModel]) -> None:
+def _handle_search(
+  provider: Provider,
+  term: str,
+  result: list[TitleModel]
+) -> None:
   data = provider.search(term)[:FETCH_SIZE]
   for item in data:
     torrent = provider.get(item)
