@@ -6,5 +6,9 @@ routes = Blueprint("routes", __name__)
 search_controller = SearchController()
 
 @routes.get("/")
-def search():
-  return search_controller.search(request.args.get("search"))
+def search_page():
+  return search_controller.search_page(request.args.get("search"))
+
+@routes.get("/json")
+def search_json():
+  return search_controller.search_json(request.args.get("search"))

@@ -34,7 +34,16 @@ class SearchController(Controller):
       CapitaoFilmes()
     ]
 
-  def search(self, term: str | None) -> str:
+  def search_page(self, term: str | None) -> str:
+    return self.render(SearchView(), { "data": self.__search(term) })
+
+  def search_json(self, term: str) -> str:
+    if not term or len(term.strip()) == 0:
+      raise Exception("Invalid search term")
+
+    return self.json([item.to_dict() for item in self.__search(term)])
+
+  def __search(self, term: str | None) -> list[TitleModel]:
     result = []
     if term:
       tgroup = []
@@ -46,4 +55,4 @@ class SearchController(Controller):
       for thread in tgroup:
         thread.join()
 
-    return self.render(SearchView(), { "data": result })
+    return result
