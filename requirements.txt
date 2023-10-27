@@ -1,5 +1,4 @@
 Flask
 Flask-Session
-Postgres
 beautifulsoup4
 lxml
