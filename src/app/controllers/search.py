@@ -1,7 +1,7 @@
 from threading import Thread
 
-from core.controller import Controller
-from core.env import Env
+from __core.controller import Controller
+from __core.env import Env
 from app.kernel.provider import Provider
 from app.kernel.providers.bf_torrent import BFTorrent
 from app.kernel.providers.capitao_filmes import CapitaoFilmes

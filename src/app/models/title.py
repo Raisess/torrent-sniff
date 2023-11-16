@@ -1,4 +1,4 @@
-from core.model import Model, dataclass, field
+from __core.model import Model, dataclass, field
 
 @dataclass
 class MagnetLink(Model):
