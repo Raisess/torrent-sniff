@@ -35,7 +35,10 @@ class SearchController(Controller):
     ]
 
   def search_page(self, term: str | None) -> str:
-    return self.render(SearchView(), { "data": self.__search(term) })
+    return self.render(
+      SearchView(),
+      { "data": self.__search(term), "term": term },
+    )
 
   def search_json(self, term: str) -> str:
     if not term or len(term.strip()) == 0:

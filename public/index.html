@@ -17,7 +17,7 @@
         <form>
           <div class="form-group">
             <label for="search">Search:</label>
-            <input id="search" class="form-control" name="search" placeholder="Are you torrenting? So Better Call Saul..." type="text" required />
+            <input id="search" class="form-control" name="search" placeholder="Are you torrenting? So Better Call Saul..." value="{{ term or '' }}" type="text" required />
           </div>
           <button type="submit" class="mt-2 btn btn-primary">Submit</button>
         </form>
